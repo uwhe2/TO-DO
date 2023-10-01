@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    
+        header{
+            background-color: rgb(15, 9, 1);
+            color: rgba(253, 253, 253, 0.938);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .hamburger{
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .logo{
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar{
+            background-color: rgba(5, 5, 5, 0.623);
+            position: fixed;
+            top: 70px;
+           left: -100%;
+            width: 200px;
+            height: calc(100% - 70px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar.active{
+            left: 0;
+        }
+
+        .navbar ul{
+            list-style-type: none;
+            display: flex;
+            text-align: center;
+            flex-direction: column ;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .navbar li{
+            margin-bottom: 30px;
+        }
+
+        .navbar a{
+            display: block;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar a:hover{
+            color: blue;
+        }
+        
+        h1{
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(0, 0, 255, 0.901);
+        }
+        .input-container{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            justify-content: space-evenly;
+        }
+
+        input[type="text"]{
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.678);
+            margin-right: 20px;
+            width: 33% ;
+
+        }
+        input[type="price"]{
+            padding: 10px;
+            border: none;
+           
+            border-bottom: 2px solid rgba(0, 0, 0, 0.678);
+            width: 15%;
+        }
+        
+            
+        
+        button{
+            padding: 10px;
+            border: none;
+            color: white;
+            background-color: rgba(0, 0, 255, 0.836);
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button:hover{
+            background-color: black;
+            color: rgb(255, 253, 253);
+        }
+        /* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+
+        
+
+        li{
+            
+            display: flex;
+            
+            justify-content: space-between;
+        }
+
+        
+        
+
+        li label{
+            font-size: 18px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Logo</div>
+
+        <button class="hamburger">&#9776;</button>
+    </header>
+
+    <h1>To-do-list</h1>
+    <div class="row">
+        <div class="col-25"></div>
+        <div class="input-container">
+            <input type="text" id="new-item-input" placeholder="Add new item..."> 
+
+            <div class="col-75"></div>
+            <input type="value" id="price" placeholder="price..."> 
+            <button id="add-item-btn">Add</button>
+        
+            
+    </div>
+    
+        
+        
+    </div>
+
+    <ul id="item-list">
+    
+    </ul>
+<ul id="myUL">
+
+</ul>
+
+    <nav class="navbar">
+           <ol id="myOl">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">contact</a></li>
+           </ol>
+       
+            
+
+<script>
+
+const hamburger = document.querySelector('.hamburger');
+const navbar = document.querySelector('.navbar');
+
+hamburger.addEventListener('click', () =>{
+    navbar.classList.toggle('active');
+});
+
+
+const newItemInput = document.getElementById('new-item-input');
+const addItemBtn = document.getElementById('add-item-btn');
+const itemList = document.getElementById('item-list');
+const priceBtn = document.getElementById('price');
+
+
+
+
+addItemBtn.addEventListener('click', addItem);
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+
+
+function addItem(){
+    if (newItemInput.value !== '' && priceBtn.value !== ''){
+        const li = document.createElement('li');
+
+        const label = document.createElement('label')
+        const deleteBtn = document.createElement('button')
+        const span = document.createElement('span')
+        
+
+        function myFunction(){
+            var x = document.getElementById("my text").value;
+            document.getElementById("demo").innerHTML = x;
+        }
+
+        label.textContent = newItemInput.value ;
+        span.textContent = `#${priceBtn.value}`;
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', deleteItem);
+
+        li.appendChild(label)
+        li.appendChild(span)
+        li.appendChild(deleteBtn)
+        
+
+        itemList.appendChild(li)
+
+        newItemInput.value= ''
+    }
+}
+
+const name = 'Uwhetu'
+console.log(`${name} is a programmer`)
+
+function deleteItem() {
+    const li = this.parentNode
+    itemList.removeChild(li)
+}
+
+
+</script>
+    </nav>
+</body>
+</html>
